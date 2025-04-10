@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Recipes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .recipe-card:hover img {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-utensils text-2xl text-orange-500"></i>
+                <span class="text-xl font-bold text-gray-800">DeliciousRecipes</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-800 hover:text-orange-500">Home</a>
+                <a href="#Recipe" class="text-gray-800 hover:text-orange-500">Recipes</a>                
+                <a href="#" class="text-gray-800 hover:text-orange-500">About</a>
+                <a href="#footer" class="text-gray-800 hover:text-orange-500">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-800">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <section class="bg-orange-500 text-white py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover Amazing Recipes</h1>
+                <p class="text-xl mb-6">Find your next favorite dish from our collection of delicious recipes.</p>
+                <button class="bg-white text-orange-500 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                    Explore Recipes
+                </button>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                     alt="Featured Recipe" 
+                     class="rounded-lg shadow-xl w-full max-w-md">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="container mx-auto px-4 py-12" id="Recipe">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Popular Recipes</h2>
+        
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" id="recipe-container">
+           
+        </div>
+        
+        
+    </section>
+
+
+    <div id="recipe-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-20 opacity-0 invisible">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <img id="modal-image" src="" alt="" class="w-full h-64 object-cover rounded-lg mb-4">
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <p class="text-sm text-gray-600">Prep Time</p>
+                        <p id="prep-time" class="font-semibold"></p>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg">
+                        <p class="text-sm text-gray-600">Cook Time</p>
+                        <p id="cook-time" class="font-semibold"></p>
+                    </div>
+                </div>
+                <h4 class="text-lg font-semibold mb-2">Ingredients</h4>
+                <ul id="ingredients" class="list-disc pl-5 mb-4"></ul>
+                <h4 class="text-lg font-semibold mb-2">Instructions</h4>
+                <ol id="instructions" class="list-decimal pl-5"></ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12" id="footer">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">DeliciousRecipes</h3>
+                    <p class="text-gray-400">Discover and share amazing recipes from around the world.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Recipes</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Categories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                    <p class="text-gray-400">contact@deliciousrecipes.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 DeliciousRecipes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        const recipes = [
+            {
+                id: 1,
+                name: "Tuna Pesto Pasta",
+            image: "Tuna Pesto.png",  <!-- Change this to your local path -->
+            description: "Creamy pasta with tuna and pesto sauce, topped with parmesan.",
+            prepTime: "15 mins",
+            cookTime: "20 mins",
+            ingredients: [
+                "16 oz penne pasta",
+                "10 oz canned tuna",
+                "½ cup pesto sauce",
+                "2 tbsp butter",
+                "2 tsp olive oil",
+                "1 onion, minced",
+                "3 garlic cloves, minced",
+                "250 ml all-purpose cream",
+                "¼ cup grated parmesan",
+                "Salt and pepper to taste"
+            ],
+            instructions: [
+                "Cook penne al dente, reserving 3 tbsp pasta water before draining.",
+                "In a pan, melt butter with olive oil. Sauté onion for 30 seconds until aromatic.",
+                "Add garlic, stirring until golden (avoid browning).",
+                "Add tuna, breaking into chunks, sauté for 1 minute.",
+                "Stir in pesto sauce, let flavors blend for 1 minute.",
+                "Pour in cream and reserved pasta water. Season with salt and pepper.",
+                "Add cooked pasta to the sauce, toss to coat.",
+                "Sprinkle with parmesan, toss again and serve."
+            ]
+            },
+            {
+                id: 2,
+                name: "Avocado Toast",
+                image: "Avocado.png",
+                description: "Simple and healthy breakfast with mashed avocado on toast.",
+                prepTime: "5 mins",
+                cookTime: "5 mins",
+                ingredients: [
+                    "2 slices sourdough bread",
+                    "1 ripe avocado",
+                    "1/2 lemon, juiced",
+                    "Salt and pepper",
+                    "Red pepper flakes (optional)",
+                    "2 eggs"
+                ],
+                instructions: [
+                    "Toast the bread until golden and crisp.",
+                    "Mash the avocado with lemon juice, salt and pepper.",
+                    "Spread the avocado mixture on the toast.",
+                    "Top with fried or poached eggs.",
+                    "Sprinkle with red pepper flakes if desired."
+                ]
+            },
+            {
+                id: 4, 
+                name: "Crispy Lumpia",
+                image: "lumpia.png",
+                description: "Filipino-style spring rolls with ground pork, carrots, and water chestnuts for extra crunch.",
+                prepTime: "30 mins",
+                cookTime: "10 mins",
+                ingredients: [
+                    "20 lumpia wrappers (thawed if frozen)",
+                    "250g ground pork",
+                    "1 cup carrots (julienned)",
+                    "1/2 cup water chestnuts (minced)",
+                    "3 cloves garlic (minced)",
+                    "1 onion (diced)",
+                    "1 tbsp soy sauce",
+                    "1 tsp black pepper",
+                    "Oil for frying"
+                ],
+                instructions: [
+                    "Sauté garlic and onions until fragrant.",
+                    "Add pork, cook until browned. Stir in veggies, soy sauce, and pepper.",
+                    "Cool filling. Place 1 tbsp near wrapper edge, fold sides, roll tightly.",
+                    "Fry in hot oil until golden brown (2-3 mins per side).",
+                    "Drain on paper towels. Serve with sweet chili sauce!"
+                ]
+            },
+            {
+                    id: 4,
+                    name: "Chicken Asado",
+                    image: "asado.png",
+                    description: "Filipino-style chicken braised in a sweet-savory sauce with soy, tomato, and spices.",
+                    prepTime: "15 mins",
+                    cookTime: "35 mins",
+                    ingredients: [
+                        "1.5 kg chicken (cut into pieces)",
+                        "3 tbsp soy sauce",
+                        "2 tbsp vinegar",
+                        "1/4 cup tomato sauce",
+                        "3 tbsp brown sugar",
+                        "1 onion (sliced)",
+                        "4 cloves garlic (minced)",
+                        "2 potatoes (quartered)",
+                        "1 bay leaf",
+                        "1 cup water"
+                    ],
+                    instructions: [
+                        "Brown chicken in oil, set aside.",
+                        "Sauté garlic and onions until fragrant.",
+                        "Add back chicken, soy sauce, vinegar, tomato sauce, sugar, and bay leaf.",
+                        "Pour water, simmer covered for 20 mins.",
+                        "Add potatoes, cook 15 mins more until tender.",
+                        "Serve hot with steamed rice."
+                ]
+            },
+            {
+                id: 5,
+                name: "Vegetable Stir Fry",
+                image: "Stir Fry.png",
+                description: "Quick and healthy vegetable stir fry with tofu.",
+                prepTime: "15 mins",
+                cookTime: "10 mins",
+                ingredients: [
+                    "2 tbsp vegetable oil",
+                    "1 onion, sliced",
+                    "2 garlic cloves, minced",
+                    "1 bell pepper, sliced",
+                    "1 carrot, julienned",
+                    "100g broccoli florets",
+                    "200g firm tofu, cubed",
+                    "3 tbsp soy sauce",
+                    "1 tbsp honey",
+                    "1 tsp ginger, grated"
+                ],
+                instructions: [
+                    "Heat oil in wok or large pan.",
+                    "Stir-fry tofu until golden, remove.",
+                    "Add onion, garlic, ginger, cook 1 min.",
+                    "Add remaining vegetables, stir-fry 4-5 mins.",
+                    "Mix soy sauce and honey, add to pan.",
+                    "Return tofu to pan, toss to coat.",
+                    "Serve with rice or noodles."
+                ]
+            },
+            {
+                id: 6,
+                name: "Chicken Adobo",
+                image: "adobo.png",
+                description: "Classic Filipino Chicken Adobo",
+                prepTime:"10 mins(plus marinating)",
+                cookTime: "25mins",
+                ingredients: [
+                    "1.5 kg chicken pieces",
+                    "1/2 cup of soy sauce",
+                    "8 garlic cloves, crushed",
+                    "3 bay leaves",
+                    "1 tsp peppercorns",
+                    "1 cup water"
+                ],
+                instructions: [
+                    "Marinate chicken in soy sauce and garlic(1 hours or PWede overnight)",
+                    "Cook the chicken in oil for at least 2 mins per side",
+                    "Add marinade, water, bay leaves, and pepper corns",
+                    "Simmer and cover it for 20 mins in low heat",
+                    "Add vinegar, then cook it for 10 mins uncovered",
+                    "Season with sugar to taste"
+                ]
+            }
+            
+        ];
+
+        
+        let currentPage = 1;
+        const recipesPerPage = 6;
+        const totalPages = Math.ceil(recipes.length / recipesPerPage);
+
+        // DOM elements
+        const recipeContainer = document.getElementById('recipe-container');
+        const pageNumbersContainer = document.getElementById('page-numbers');
+        const prevButton = document.getElementById('prev-page');
+        const nextButton = document.getElementById('next-page');
+        const modal = document.getElementById('recipe-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        // Display recipes for current page
+        function displayRecipes(page) {
+            recipeContainer.innerHTML = '';
+            const startIndex = (page - 1) * recipesPerPage;
+            const endIndex = Math.min(startIndex + recipesPerPage, recipes.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const recipe = recipes[i];
+                const recipeCard = document.createElement('div');
+                recipeCard.className = 'recipe-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300';
+                recipeCard.innerHTML = `
+                    <img src="${recipe.image}" alt="${recipe.name}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">${recipe.name}</h3>
+                        <p class="text-gray-600 mb-4">${recipe.description}</p>
+                        <button onclick="showRecipeDetails(${recipe.id})" class="text-orange-500 hover:text-orange-600 font-medium">
+                            View Recipe <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                `;
+                recipeContainer.appendChild(recipeCard);
+            }
+        }
+
+     
+        window.showRecipeDetails = function(recipeId) {
+            const recipe = recipes.find(r => r.id === recipeId);
+            if (recipe) {
+                document.getElementById('modal-title').textContent = recipe.name;
+                document.getElementById('modal-image').src = recipe.image;
+                document.getElementById('modal-image').alt = recipe.name;
+                document.getElementById('prep-time').textContent = recipe.prepTime;
+                document.getElementById('cook-time').textContent = recipe.cookTime;
+                
+                const ingredientsList = document.getElementById('ingredients');
+                ingredientsList.innerHTML = '';
+                recipe.ingredients.forEach(ingredient => {
+                    const li = document.createElement('li');
+                    li.textContent = ingredient;
+                    ingredientsList.appendChild(li);
+                });
+                
+                const instructionsList = document.getElementById('instructions');
+                instructionsList.innerHTML = '';
+                recipe.instructions.forEach(instruction => {
+                    const li = document.createElement('li');
+                    li.textContent = instruction;
+                    instructionsList.appendChild(li);
+                });
+                
+                modal.classList.remove('invisible', 'opacity-0');
+                modal.classList.add('opacity-100', 'visible');
+            }
+        };
+
+
+        
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('invisible', 'opacity-0');
+            modal.classList.remove('opacity-100', 'visible');
+        });
+
+        displayRecipes(currentPage);
+        displayPaginationNumbers();
+    </script>
+</body>
+</html>
